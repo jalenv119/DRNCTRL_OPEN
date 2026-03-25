@@ -1,1 +1,11 @@
-# DRNCTRL_OPEN
+# Team20
+A Capstone project for UNO Class of 2026, In this project we aim to create a mind controlled drone, using a EEG controled BCI
+
+## 1.0
+
+For the first milestone we have basic connectivity to our headset and drone, both use websockets to communicate between our programs and hardware.
+For specifically the headset we have trained it to detect the following commands: NEUTRAL, LIFT, DROP
+These commands at the moment just print out their respective commands in the command line. Currently we are having issues with the headset disconnecting when put on heads.
+
+For the drone we have gotten a continuous prompt to show in the command line interface allowing us to send commands to the drone via utf-8 encoded text. We are currently having issues with 
+batteries not being able to hold or gain charge.
