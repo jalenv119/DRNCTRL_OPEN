@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "DrongCTRL", "index.html", [
+  [ "DroneCTRL", "index.html", [
     [ "Team20", "md_README.html", [
       [ "1.0", "md_README.html#autotoc_md1", null ]
     ] ],
