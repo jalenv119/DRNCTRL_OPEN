@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>DroneCTRL: Team20</title>
+<title>DroneCTRL: Read me!</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -89,14 +89,41 @@ $(document).ready(function(){initNavTree('md_README.html',''); initResizable(); 
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Team20</div></div>
+  <div class="headertitle"><div class="title">Read me!</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md0"></a>A Capstone project for UNO Class of 2026, In this project we aim to create a mind controlled drone, using a EEG controled BCI</p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md0"></a>A Capstone project for UNO Class of 2026, In this project we aim to create a mind controlled drone, using a EEG.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
-1.0</h1>
-<p>For the first milestone we have basic connectivity to our headset and drone, both use websockets to communicate between our programs and hardware. For specifically the headset we have trained it to detect the following commands: NEUTRAL, LIFT, DROP These commands at the moment just print out their respective commands in the command line. Currently we are having issues with the headset disconnecting when put on heads.</p>
-<p>For the drone we have gotten a continuous prompt to show in the command line interface allowing us to send commands to the drone via utf-8 encoded text. We are currently having issues with batteries not being able to hold or gain charge. </p>
+RELEASE 1.0</h1>
+<p>This is our final release. With it, we have completed our implementation of a BCI (Brain Computer Interface) controlled drone. We have a UI delivering vital information to the usual, and a threaded command and control implementation for command translation. We targeted a modular style, as to help along future groups who may decide to iterate upon this initial release.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Local devlopment / Install Instructions</h1>
+<p>Depends on: <a href="https://www.python.org/downloads">Python 3.9+</a>, pip, <a href="https://www.emotiv.com/emotiv-launcher#download">Emotiv Launcher</a>. The user/developer must get API keys for Emotiv, in order to train or utilize the headset in any capacity. </p>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Clone and setup venv</h2>
+<div class="fragment"><div class="line">git clone https://github.com/jalenv119/DRNCTRL_OPEN.git &amp;&amp; cd DRNCTRL_OPEN</div>
+</div><!-- fragment --> <div class="fragment"><div class="line">python3 -m venv .venv &amp;&amp; source .venv/bin/activate</div>
+</div><!-- fragment --> <div class="fragment"><div class="line">pip install -r requirements.txt</div>
+</div><!-- fragment --><ul>
+<li>NOTE: the source command may need to be changed based on the operating system you have, this is written for Unix based operating systems, and assumes a POSIX compliant shell&ndash; E.G. bash, zsh, sh, etc. </li>
+</ul>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Flow</h2>
+<ol type="1">
+<li>Run Emotiv launcher and sign in; ensure it is running as a background process. (Install the Emotiv BCI package as well for training)</li>
+<li>Create a user headset profile and generate keys/tokens. If the user desires, they can begin headset training at this point</li>
+<li>Replace the CLIENT_SECRET, CLIENT_ID, PROFILE within cortex.py. Each of these should have a placeholder currently in the string areas.</li>
+<li>Run either gui.py or cortex.py to initialize/cache offline keys.<ul>
+<li>Due to how the drone is connected, keys must be cached for offline use.</li>
+<li>If the user wishes to control the drone, after the initial run, they should connect to the drones SSID after powering it on and rerun.</li>
+<li>If the user does not wish to operate the drone, they can continue with the initial run without concern.</li>
+</ul>
+</li>
+<li>For adding new commands, the user can change the option in the cortex file specifying the json commands (ACTION_TO_OUTPUT).</li>
+</ol>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Considerations</h2>
+<p>Consult the Emotiv documentation for any issues that are related to contact/signal quality. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
