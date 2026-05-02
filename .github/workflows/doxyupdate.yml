@@ -1,15 +1,17 @@
-name: Generate Doxygen Docs
+name: Generate and Deploy Doxygen Docs to Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
-  doxygen:
+  doxygen_and_deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pages: write
+      id-token: write
 
     steps:
       - name: Checkout repository
@@ -22,6 +24,7 @@ jobs:
 
       - name: Run Doxygen
         run: doxygen Doxyfile
+
       - name: Commit generated Docs
         run: |
           git config user.name "github-actions"
@@ -29,3 +32,15 @@ jobs:
           git add ./docs/*
           git diff --cached --quiet || git commit -m "Auto-update Doxygen docs"
           git push
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './docs/html'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
