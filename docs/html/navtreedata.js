@@ -25,8 +25,13 @@
 var NAVTREE =
 [
   [ "DroneCTRL", "index.html", [
-    [ "Team20", "md_README.html", [
-      [ "1.0", "md_README.html#autotoc_md1", null ]
+    [ "Read me!", "md_README.html", [
+      [ "RELEASE 1.0", "md_README.html#autotoc_md1", null ],
+      [ "Local devlopment / Install Instructions", "md_README.html#autotoc_md2", [
+        [ "Clone and setup venv", "md_README.html#autotoc_md3", null ],
+        [ "Flow", "md_README.html#autotoc_md4", null ],
+        [ "Considerations", "md_README.html#autotoc_md5", null ]
+      ] ]
     ] ],
     [ "Packages", "namespaces.html", [
       [ "Package List", "namespaces.html", "namespaces_dup" ]
