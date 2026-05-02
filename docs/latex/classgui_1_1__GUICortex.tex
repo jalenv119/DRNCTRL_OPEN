@@ -1,0 +1,148 @@
+\doxysection{gui.\+\_\+\+GUICortex Class Reference}
+\hypertarget{classgui_1_1__GUICortex}{}\label{classgui_1_1__GUICortex}\index{gui.\_GUICortex@{gui.\_GUICortex}}
+Inheritance diagram for gui.\+\_\+\+GUICortex\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgui_1_1__GUICortex}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgui_1_1__GUICortex_aad889a5e6a093e7d5c002232137f2609}{on\+\_\+open}} (self, ws)
+\item 
+\mbox{\hyperlink{classgui_1_1__GUICortex_abf2aa2a500aa5d9d76e59d7e9098df45}{on\+\_\+close}} (self, ws, code, msg)
+\item 
+\mbox{\hyperlink{classgui_1_1__GUICortex_a49f377caf35b5651bfca698e31165968}{handle\+\_\+mental\+\_\+command}} (self, data)
+\item 
+\mbox{\hyperlink{classgui_1_1__GUICortex_af1c5924ea7286b64ea619db05e3f6426}{setup\+\_\+flow}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classcortex_1_1CortexClient}{cortex.\+Cortex\+Client}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, drone)
+\item 
+{\bfseries on\+\_\+error} (self, ws, err)
+\item 
+{\bfseries on\+\_\+message} (self, ws, message)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgui_1_1__GUICortex_afcd823fa4cbc6351e84d4ae2ae229572}\label{classgui_1_1__GUICortex_afcd823fa4cbc6351e84d4ae2ae229572} 
+{\bfseries cortex\+\_\+token}
+\item 
+\Hypertarget{classgui_1_1__GUICortex_ac5c8dd8324a91971c91a9681e3cd1f53}\label{classgui_1_1__GUICortex_ac5c8dd8324a91971c91a9681e3cd1f53} 
+{\bfseries headset\+\_\+id}
+\item 
+\Hypertarget{classgui_1_1__GUICortex_aa103404a1f920d7c378465f719ea5e3d}\label{classgui_1_1__GUICortex_aa103404a1f920d7c378465f719ea5e3d} 
+{\bfseries session\+\_\+id}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classcortex_1_1CortexClient}{cortex.\+Cortex\+Client}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries ws}
+\item 
+{\bfseries drone}
+\item 
+{\bfseries next\+\_\+id}
+\item 
+{\bfseries cortex\+\_\+token}
+\item 
+{\bfseries headset\+\_\+id}
+\item 
+{\bfseries session\+\_\+id}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \mbox{\hyperlink{classgui_1_1__GUICortex_a0019ee9a1a9c49464aad3236d99ab483}{\+\_\+run\+\_\+drone\+\_\+command}} (self, str cmd)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classcortex_1_1CortexClient}{cortex.\+Cortex\+Client}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcortex_1_1CortexClient_adbecde1013f58e250fab49a3fd39fb84}{\+\_\+rpc\+\_\+call}} (self, method, params=None, timeout=12)
+\item 
+{\bfseries \+\_\+fetch\+\_\+token} (self, force\+\_\+refresh=False)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgui_1_1__GUICortex_ac993edaa3dded972ec7ffb1f5aa20418}\label{classgui_1_1__GUICortex_ac993edaa3dded972ec7ffb1f5aa20418} 
+asyncio {\bfseries \+\_\+loop} = None
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classcortex_1_1CortexClient}{cortex.\+Cortex\+Client}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+pending}
+\item 
+{\bfseries \+\_\+pending\+\_\+lock}
+\item 
+{\bfseries \+\_\+last\+\_\+output\+\_\+time}
+\item 
+{\bfseries \+\_\+last\+\_\+output}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Subclass of CortexClient that mirrors state into _S for the GUI.\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgui_1_1__GUICortex_a0019ee9a1a9c49464aad3236d99ab483}\label{classgui_1_1__GUICortex_a0019ee9a1a9c49464aad3236d99ab483} 
+\index{gui.\_GUICortex@{gui.\_GUICortex}!\_run\_drone\_command@{\_run\_drone\_command}}
+\index{\_run\_drone\_command@{\_run\_drone\_command}!gui.\_GUICortex@{gui.\_GUICortex}}
+\doxysubsubsection{\texorpdfstring{\_run\_drone\_command()}{\_run\_drone\_command()}}
+{\footnotesize\ttfamily  None gui.\+\_\+\+GUICortex.\+\_\+run\+\_\+drone\+\_\+command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{cmd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Schedule the drone coroutine on the backend event loop (called from WS thread).\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classcortex_1_1CortexClient_a867a32ba0edcc382c23cb1ed64632056}{cortex.\+Cortex\+Client}}.
+
+\Hypertarget{classgui_1_1__GUICortex_a49f377caf35b5651bfca698e31165968}\label{classgui_1_1__GUICortex_a49f377caf35b5651bfca698e31165968} 
+\index{gui.\_GUICortex@{gui.\_GUICortex}!handle\_mental\_command@{handle\_mental\_command}}
+\index{handle\_mental\_command@{handle\_mental\_command}!gui.\_GUICortex@{gui.\_GUICortex}}
+\doxysubsubsection{\texorpdfstring{handle\_mental\_command()}{handle\_mental\_command()}}
+{\footnotesize\ttfamily gui.\+\_\+\+GUICortex.\+handle\+\_\+mental\+\_\+command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{data }\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \mbox{\hyperlink{classcortex_1_1CortexClient}{cortex.\+Cortex\+Client}}.
+
+\Hypertarget{classgui_1_1__GUICortex_abf2aa2a500aa5d9d76e59d7e9098df45}\label{classgui_1_1__GUICortex_abf2aa2a500aa5d9d76e59d7e9098df45} 
+\index{gui.\_GUICortex@{gui.\_GUICortex}!on\_close@{on\_close}}
+\index{on\_close@{on\_close}!gui.\_GUICortex@{gui.\_GUICortex}}
+\doxysubsubsection{\texorpdfstring{on\_close()}{on\_close()}}
+{\footnotesize\ttfamily gui.\+\_\+\+GUICortex.\+on\+\_\+close (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{ws,  }\item[{}]{code,  }\item[{}]{msg }\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \mbox{\hyperlink{classcortex_1_1CortexClient}{cortex.\+Cortex\+Client}}.
+
+\Hypertarget{classgui_1_1__GUICortex_aad889a5e6a093e7d5c002232137f2609}\label{classgui_1_1__GUICortex_aad889a5e6a093e7d5c002232137f2609} 
+\index{gui.\_GUICortex@{gui.\_GUICortex}!on\_open@{on\_open}}
+\index{on\_open@{on\_open}!gui.\_GUICortex@{gui.\_GUICortex}}
+\doxysubsubsection{\texorpdfstring{on\_open()}{on\_open()}}
+{\footnotesize\ttfamily gui.\+\_\+\+GUICortex.\+on\+\_\+open (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{ws }\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \mbox{\hyperlink{classcortex_1_1CortexClient}{cortex.\+Cortex\+Client}}.
+
+\Hypertarget{classgui_1_1__GUICortex_af1c5924ea7286b64ea619db05e3f6426}\label{classgui_1_1__GUICortex_af1c5924ea7286b64ea619db05e3f6426} 
+\index{gui.\_GUICortex@{gui.\_GUICortex}!setup\_flow@{setup\_flow}}
+\index{setup\_flow@{setup\_flow}!gui.\_GUICortex@{gui.\_GUICortex}}
+\doxysubsubsection{\texorpdfstring{setup\_flow()}{setup\_flow()}}
+{\footnotesize\ttfamily gui.\+\_\+\+GUICortex.\+setup\+\_\+flow (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \mbox{\hyperlink{classcortex_1_1CortexClient}{cortex.\+Cortex\+Client}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+gui.\+py\end{DoxyCompactItemize}
