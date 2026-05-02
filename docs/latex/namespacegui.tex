@@ -1,0 +1,66 @@
+\doxysection{gui Namespace Reference}
+\hypertarget{namespacegui}{}\label{namespacegui}\index{gui@{gui}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classgui_1_1__GUICortex}{\+\_\+\+GUICortex}}
+\item 
+class \mbox{\hyperlink{classgui_1_1__GUIDrone}{\+\_\+\+GUIDrone}}
+\item 
+class \mbox{\hyperlink{classgui_1_1__S}{\+\_\+S}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacegui_aa32fb4a1b832f434277b64f59955962d}\label{namespacegui_aa32fb4a1b832f434277b64f59955962d} 
+{\bfseries \+\_\+build\+\_\+gui} ()
+\item 
+\Hypertarget{namespacegui_a28315325a1ad17121f6bd09f1e3e21fe}\label{namespacegui_a28315325a1ad17121f6bd09f1e3e21fe} 
+{\bfseries \+\_\+update\+\_\+gui} ()
+\item 
+\Hypertarget{namespacegui_aa785364bc79f5c9c01e10cab8e757aff}\label{namespacegui_aa785364bc79f5c9c01e10cab8e757aff} 
+{\bfseries \+\_\+run\+\_\+backend} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacegui_a1c7da12366c00472b699675cd6b02783}\label{namespacegui_a1c7da12366c00472b699675cd6b02783} 
+tuple {\bfseries \+\_\+\+GREEN} = (80, 220, 80)
+\item 
+\Hypertarget{namespacegui_ab5513a8aa83441d6f7a6f9212db4698c}\label{namespacegui_ab5513a8aa83441d6f7a6f9212db4698c} 
+tuple {\bfseries \+\_\+\+RED} = (220, 60, 60)
+\item 
+\Hypertarget{namespacegui_a8f02dec2b6caabeff467f2c53c5d41f2}\label{namespacegui_a8f02dec2b6caabeff467f2c53c5d41f2} 
+tuple {\bfseries \+\_\+\+YELLOW} = (220, 200, 60)
+\item 
+\Hypertarget{namespacegui_aac7348694084d60b0993fc224c32eb87}\label{namespacegui_aac7348694084d60b0993fc224c32eb87} 
+tuple {\bfseries \+\_\+\+BLUE} = (100, 180, 255)
+\item 
+\Hypertarget{namespacegui_adf6e9f251c03221d92a7f61bff129c38}\label{namespacegui_adf6e9f251c03221d92a7f61bff129c38} 
+tuple {\bfseries \+\_\+\+GREY} = (130, 130, 130)
+\item 
+\Hypertarget{namespacegui_ad26541c4de023edeb502a68c6509cd0b}\label{namespacegui_ad26541c4de023edeb502a68c6509cd0b} 
+tuple {\bfseries \+\_\+\+WHITE} = (220, 220, 220)
+\item 
+\Hypertarget{namespacegui_a1ae19de89242bbc4a433ac82c0d8d8f8}\label{namespacegui_a1ae19de89242bbc4a433ac82c0d8d8f8} 
+int {\bfseries \+\_\+\+HISTORY} = 300
+\item 
+\Hypertarget{namespacegui_ac3fc42072068d63e8621098fbb258b85}\label{namespacegui_ac3fc42072068d63e8621098fbb258b85} 
+{\bfseries backend} = threading.\+Thread(target=\+\_\+run\+\_\+backend, daemon=True)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}gui.py  -  Dear PyGui dashboard for BCI Drone Control (Team20)
+
+Run with:
+    python gui.py
+
+Displays:
+  - Connection status (Cortex WS, headset, session, profile, drone)
+  - Headset ID + battery level
+  - Current mental command + confidence bar (colour-coded against threshold)
+  - Last command sent to the drone + drone response
+  - Scrolling confidence history plot with threshold line
+\end{DoxyVerb}
+ 

@@ -1,0 +1,73 @@
+\doxysection{tello\+\_\+driver.\+Tello\+Driver Class Reference}
+\hypertarget{classtello__driver_1_1TelloDriver}{}\label{classtello__driver_1_1TelloDriver}\index{tello\_driver.TelloDriver@{tello\_driver.TelloDriver}}
+Inheritance diagram for tello\+\_\+driver.\+Tello\+Driver\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtello__driver_1_1TelloDriver}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classtello__driver_1_1TelloDriver_af56396c488df059af1d0a20c42b52274}\label{classtello__driver_1_1TelloDriver_af56396c488df059af1d0a20c42b52274} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, drone\+\_\+ip, drone\+\_\+port)
+\item 
+\mbox{\hyperlink{classtello__driver_1_1TelloDriver_aa01cefc8a992328843747345e5109119}{connection\+\_\+made}} (self, transport)
+\item 
+\mbox{\hyperlink{classtello__driver_1_1TelloDriver_a683913643d7864152ce1165847f11088}{datagram\+\_\+received}} (self, data, addr)
+\item 
+\mbox{\hyperlink{classtello__driver_1_1TelloDriver_a31d773760a021d8b099c3bc4763a1a2b}{run\+\_\+command}} (self, command, timeout=7)
+\item 
+\mbox{\hyperlink{classtello__driver_1_1TelloDriver_ad17af525e1fac0aa5d5be280633692a8}{close}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classtello__driver_1_1TelloDriver_ac654a42f0f4284fa53e7bfc4edccf881}\label{classtello__driver_1_1TelloDriver_ac654a42f0f4284fa53e7bfc4edccf881} 
+{\bfseries drone\+\_\+addr}
+\item 
+\Hypertarget{classtello__driver_1_1TelloDriver_aacfe91af47fe1c0d10293c7c5f10a379}\label{classtello__driver_1_1TelloDriver_aacfe91af47fe1c0d10293c7c5f10a379} 
+{\bfseries transport}
+\item 
+\Hypertarget{classtello__driver_1_1TelloDriver_a9758eb50ac2587717c64dc81b439d507}\label{classtello__driver_1_1TelloDriver_a9758eb50ac2587717c64dc81b439d507} 
+{\bfseries response\+\_\+event}
+\item 
+\Hypertarget{classtello__driver_1_1TelloDriver_adfe0df712cf64173aaea72d72ee9d97f}\label{classtello__driver_1_1TelloDriver_adfe0df712cf64173aaea72d72ee9d97f} 
+{\bfseries last\+\_\+response}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classtello__driver_1_1TelloDriver_ad17af525e1fac0aa5d5be280633692a8}\label{classtello__driver_1_1TelloDriver_ad17af525e1fac0aa5d5be280633692a8} 
+\index{tello\_driver.TelloDriver@{tello\_driver.TelloDriver}!close@{close}}
+\index{close@{close}!tello\_driver.TelloDriver@{tello\_driver.TelloDriver}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily tello\+\_\+driver.\+Tello\+Driver.\+close (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Clean up the transport connection when done. Always call this when finished with the drone.\end{DoxyVerb}
+ \Hypertarget{classtello__driver_1_1TelloDriver_aa01cefc8a992328843747345e5109119}\label{classtello__driver_1_1TelloDriver_aa01cefc8a992328843747345e5109119} 
+\index{tello\_driver.TelloDriver@{tello\_driver.TelloDriver}!connection\_made@{connection\_made}}
+\index{connection\_made@{connection\_made}!tello\_driver.TelloDriver@{tello\_driver.TelloDriver}}
+\doxysubsubsection{\texorpdfstring{connection\_made()}{connection\_made()}}
+{\footnotesize\ttfamily tello\+\_\+driver.\+Tello\+Driver.\+connection\+\_\+made (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{transport }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Represents the UDP socket connection to the drone. Called when the connection is established.\end{DoxyVerb}
+ \Hypertarget{classtello__driver_1_1TelloDriver_a683913643d7864152ce1165847f11088}\label{classtello__driver_1_1TelloDriver_a683913643d7864152ce1165847f11088} 
+\index{tello\_driver.TelloDriver@{tello\_driver.TelloDriver}!datagram\_received@{datagram\_received}}
+\index{datagram\_received@{datagram\_received}!tello\_driver.TelloDriver@{tello\_driver.TelloDriver}}
+\doxysubsubsection{\texorpdfstring{datagram\_received()}{datagram\_received()}}
+{\footnotesize\ttfamily tello\+\_\+driver.\+Tello\+Driver.\+datagram\+\_\+received (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{data,  }\item[{}]{addr }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Callback for when a response is received from the drone. Sets the last_response and triggers the event.\end{DoxyVerb}
+ \Hypertarget{classtello__driver_1_1TelloDriver_a31d773760a021d8b099c3bc4763a1a2b}\label{classtello__driver_1_1TelloDriver_a31d773760a021d8b099c3bc4763a1a2b} 
+\index{tello\_driver.TelloDriver@{tello\_driver.TelloDriver}!run\_command@{run\_command}}
+\index{run\_command@{run\_command}!tello\_driver.TelloDriver@{tello\_driver.TelloDriver}}
+\doxysubsubsection{\texorpdfstring{run\_command()}{run\_command()}}
+{\footnotesize\ttfamily tello\+\_\+driver.\+Tello\+Driver.\+run\+\_\+command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{command,  }\item[{}]{timeout = {\ttfamily 7} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The main method you will call from your control code.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+tello\+\_\+driver.\+py\end{DoxyCompactItemize}

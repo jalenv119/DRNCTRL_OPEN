@@ -1,0 +1,106 @@
+\doxysection{cortex.\+Cortex\+Client Class Reference}
+\hypertarget{classcortex_1_1CortexClient}{}\label{classcortex_1_1CortexClient}\index{cortex.CortexClient@{cortex.CortexClient}}
+Inheritance diagram for cortex.\+Cortex\+Client\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcortex_1_1CortexClient}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcortex_1_1CortexClient_a05837da3966ff9b8eb7dc23fb19fc6fa}\label{classcortex_1_1CortexClient_a05837da3966ff9b8eb7dc23fb19fc6fa} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, drone)
+\item 
+\Hypertarget{classcortex_1_1CortexClient_a4714531d2298f5fcfdad5a3d7625eba7}\label{classcortex_1_1CortexClient_a4714531d2298f5fcfdad5a3d7625eba7} 
+{\bfseries on\+\_\+open} (self, ws)
+\item 
+\Hypertarget{classcortex_1_1CortexClient_a153dbccb718cd21402ad315e3b30ddb8}\label{classcortex_1_1CortexClient_a153dbccb718cd21402ad315e3b30ddb8} 
+{\bfseries on\+\_\+close} (self, ws, code, msg)
+\item 
+\Hypertarget{classcortex_1_1CortexClient_ab0e816f6bc98105260770693ccccbf15}\label{classcortex_1_1CortexClient_ab0e816f6bc98105260770693ccccbf15} 
+{\bfseries on\+\_\+error} (self, ws, err)
+\item 
+\Hypertarget{classcortex_1_1CortexClient_a02d71d89665d5df696a26aa1fa677ad3}\label{classcortex_1_1CortexClient_a02d71d89665d5df696a26aa1fa677ad3} 
+{\bfseries on\+\_\+message} (self, ws, message)
+\item 
+\Hypertarget{classcortex_1_1CortexClient_ab988a4189cdaa1fef4ea187f111752af}\label{classcortex_1_1CortexClient_ab988a4189cdaa1fef4ea187f111752af} 
+{\bfseries handle\+\_\+mental\+\_\+command} (self, data)
+\item 
+\Hypertarget{classcortex_1_1CortexClient_a4c0d89692d570dcd07da01e2d17dcb82}\label{classcortex_1_1CortexClient_a4c0d89692d570dcd07da01e2d17dcb82} 
+{\bfseries setup\+\_\+flow} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcortex_1_1CortexClient_aaac89b8704170b664468669757b9e445}\label{classcortex_1_1CortexClient_aaac89b8704170b664468669757b9e445} 
+{\bfseries ws}
+\item 
+\Hypertarget{classcortex_1_1CortexClient_a91ce787a3686617606ebb30b48cc3753}\label{classcortex_1_1CortexClient_a91ce787a3686617606ebb30b48cc3753} 
+{\bfseries drone}
+\item 
+\Hypertarget{classcortex_1_1CortexClient_afd8af6e842ccda03317deecf824c9358}\label{classcortex_1_1CortexClient_afd8af6e842ccda03317deecf824c9358} 
+{\bfseries next\+\_\+id}
+\item 
+\Hypertarget{classcortex_1_1CortexClient_a1a7941e98c6381f18a203a359d64b230}\label{classcortex_1_1CortexClient_a1a7941e98c6381f18a203a359d64b230} 
+{\bfseries cortex\+\_\+token}
+\item 
+\Hypertarget{classcortex_1_1CortexClient_abf457da11db326a261a3b12168a52b01}\label{classcortex_1_1CortexClient_abf457da11db326a261a3b12168a52b01} 
+{\bfseries headset\+\_\+id}
+\item 
+\Hypertarget{classcortex_1_1CortexClient_a2ce19ff050df386fd434b0f099933a33}\label{classcortex_1_1CortexClient_a2ce19ff050df386fd434b0f099933a33} 
+{\bfseries session\+\_\+id}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcortex_1_1CortexClient_adbecde1013f58e250fab49a3fd39fb84}{\+\_\+rpc\+\_\+call}} (self, method, params=None, timeout=12)
+\item 
+\Hypertarget{classcortex_1_1CortexClient_a08b4692c991aa071d59be987664ca3a4}\label{classcortex_1_1CortexClient_a08b4692c991aa071d59be987664ca3a4} 
+{\bfseries \+\_\+fetch\+\_\+token} (self, force\+\_\+refresh=False)
+\item 
+None \mbox{\hyperlink{classcortex_1_1CortexClient_a867a32ba0edcc382c23cb1ed64632056}{\+\_\+run\+\_\+drone\+\_\+command}} (self, str cmd)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcortex_1_1CortexClient_a2c01d552c337b385dc1ef357a2fa8762}\label{classcortex_1_1CortexClient_a2c01d552c337b385dc1ef357a2fa8762} 
+{\bfseries \+\_\+pending}
+\item 
+\Hypertarget{classcortex_1_1CortexClient_a6a08f508af241dd609303dc3924e0550}\label{classcortex_1_1CortexClient_a6a08f508af241dd609303dc3924e0550} 
+{\bfseries \+\_\+pending\+\_\+lock}
+\item 
+\Hypertarget{classcortex_1_1CortexClient_ae404ea0455d7ce0891df804ec289268f}\label{classcortex_1_1CortexClient_ae404ea0455d7ce0891df804ec289268f} 
+{\bfseries \+\_\+last\+\_\+output\+\_\+time}
+\item 
+\Hypertarget{classcortex_1_1CortexClient_aff12a0a7d441bd425c461831e66b7c88}\label{classcortex_1_1CortexClient_aff12a0a7d441bd425c461831e66b7c88} 
+{\bfseries \+\_\+last\+\_\+output}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcortex_1_1CortexClient_adbecde1013f58e250fab49a3fd39fb84}\label{classcortex_1_1CortexClient_adbecde1013f58e250fab49a3fd39fb84} 
+\index{cortex.CortexClient@{cortex.CortexClient}!\_rpc\_call@{\_rpc\_call}}
+\index{\_rpc\_call@{\_rpc\_call}!cortex.CortexClient@{cortex.CortexClient}}
+\doxysubsubsection{\texorpdfstring{\_rpc\_call()}{\_rpc\_call()}}
+{\footnotesize\ttfamily cortex.\+Cortex\+Client.\+\_\+rpc\+\_\+call (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{method,  }\item[{}]{params = {\ttfamily None},  }\item[{}]{timeout = {\ttfamily 12} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Send a JSON-RPC request and wait for its response.\end{DoxyVerb}
+ \Hypertarget{classcortex_1_1CortexClient_a867a32ba0edcc382c23cb1ed64632056}\label{classcortex_1_1CortexClient_a867a32ba0edcc382c23cb1ed64632056} 
+\index{cortex.CortexClient@{cortex.CortexClient}!\_run\_drone\_command@{\_run\_drone\_command}}
+\index{\_run\_drone\_command@{\_run\_drone\_command}!cortex.CortexClient@{cortex.CortexClient}}
+\doxysubsubsection{\texorpdfstring{\_run\_drone\_command()}{\_run\_drone\_command()}}
+{\footnotesize\ttfamily  None cortex.\+Cortex\+Client.\+\_\+run\+\_\+drone\+\_\+command (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{cmd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Execute a drone command. Subclasses can override for different event-loop contexts.
+   Now featuring thread saftey!
+\end{DoxyVerb}
+ 
+
+Reimplemented in \mbox{\hyperlink{classgui_1_1__GUICortex_a0019ee9a1a9c49464aad3236d99ab483}{gui.\+\_\+\+GUICortex}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cortex.\+py\end{DoxyCompactItemize}
