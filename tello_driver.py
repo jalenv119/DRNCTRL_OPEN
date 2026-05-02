@@ -40,7 +40,7 @@ async def create_drone(ip, drone_port):
     transport, protocol = await loop.create_datagram_endpoint(
         lambda: TelloDriver(ip,drone_port),
         # Using lamnbda to pass parameters to the protocol constructor
-        local_addr=('0.0.0.0', 9000)
+        local_addr=('0.0.0.0', 0)
     )
     # Vital: Initialize SDK mode immediately
     await protocol.run_command("command")

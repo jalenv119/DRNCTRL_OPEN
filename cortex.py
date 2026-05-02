@@ -2,36 +2,41 @@ import json
 import ssl
 import time
 import threading
-import asyncio 
+import asyncio
+import os
+from dotenv import load_dotenv
 
-from websocket import WebSocketApp
+import websocket
 from tello_driver import create_drone
 
+load_dotenv()
 CORTEX_URL = "wss://localhost:6868"
 
 DRONE_IP   = "192.168.10.1"
 DRONE_PORT = 8889
 
-CLIENT_ID = "xxx".strip()
-CLIENT_SECRET = "xxx".strip()
+
+CLIENT_ID = "REPLACE".strip()
+CLIENT_SECRET = "REPLACE".strip()
 
 # trained profile name in Emotiv
-PROFILE_NAME = "jalen"
+PROFILE_NAME = "REPLACE"
 
 # Output mapping:
 
 # Arbitrary values for now
 ACTION_TO_OUTPUT = {
-    "lift": "UP 20",
-    "drop": "DOWN 20",
-    "neutral": "HOVER",
+    "lift": "takeoff",
+    "push": "forward 40",
+    "pull": "backward 40",
+    "neutral": "",
 }
 
-CONFIDENCE_THRESHOLD = 0.65  # tweak 0.55-0.75
-PRINT_NEUTRAL_ALWAYS = True  # if False, only prints HOVER when confidence passes threshold too
+CONFIDENCE_THRESHOLD = 0.40 # tweak 0.55-0.75
+PRINT_NEUTRAL_ALWAYS = False# if False, only prints HOVER when confidence passes threshold too
 
 # Cooldown so it doesn't spam output
-OUTPUT_COOLDOWN_SEC = 0.35
+OUTPUT_COOLDOWN_SEC = 0.2
 
 # Cortex JSON-RPC Client
 
@@ -85,6 +90,61 @@ class CortexClient:
             raise RuntimeError(f"{method} error: {resp['error']}")
         return resp.get("result")
 
+    def _fetch_token(self, force_refresh=False):
+        token = None if force_refresh else os.getenv("AUTH")
+        if token:
+            token = token.strip() or None
+        if not token:
+            # requestAccess registers/prompts approval in Emotiv Launcher
+            access = self._rpc_call("requestAccess", {
+                "clientId": CLIENT_ID,
+                "clientSecret": CLIENT_SECRET,
+            })
+            if not access.get("accessGranted"):
+                print("[Auth] App not yet approved. Open Emotiv Launcher and click 'Allow'…")
+                for _ in range(60):  # up to 5 minutes
+                    time.sleep(5)
+                    access = self._rpc_call("requestAccess", {
+                        "clientId": CLIENT_ID,
+                        "clientSecret": CLIENT_SECRET,
+                    })
+                    if access.get("accessGranted"):
+                        print("[Auth] Access granted!")
+                        break
+                else:
+                    raise RuntimeError("Emotiv Launcher access not granted after 5 minutes.")
+
+            # authorize — retry once if Cortex says not approved yet
+            auth = None
+            for attempt in range(2):
+                try:
+                    auth = self._rpc_call("authorize", {
+                        "clientId": CLIENT_ID,
+                        "clientSecret": CLIENT_SECRET,
+                        "debit": 1,
+                    })
+                    break
+                except RuntimeError as e:
+                    if "-32102" in str(e) and attempt == 0:
+                        print("[Auth] Cortex rejected authorize — waiting for Emotiv Launcher approval…")
+                        for _ in range(60):
+                            time.sleep(5)
+                            access = self._rpc_call("requestAccess", {
+                                "clientId": CLIENT_ID,
+                                "clientSecret": CLIENT_SECRET,
+                            })
+                            if access.get("accessGranted"):
+                                break
+                    else:
+                        raise
+
+            token = auth["cortexToken"]
+            env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
+            with open(env_path, "w") as f:
+                f.write(f"AUTH={token}\n")
+            os.environ["AUTH"] = token
+        return token
+
     def on_open(self, ws):
         print("[WS] Connected to Cortex.")
         self.ws = ws
@@ -121,6 +181,13 @@ class CortexClient:
 
     # Mental command handling
 
+    def _run_drone_command(self, cmd: str) -> None:
+        """Execute a drone command. Subclasses can override for different event-loop contexts.
+           Now featuring thread saftey!
+        """
+        loop = asyncio.get_event_loop()
+        asyncio.run_coroutine_threadsafe(self.drone.run_command(cmd), loop)
+
     def handle_mental_command(self, data):
         com = data.get("com")
         if not com or len(com) < 2:
@@ -153,7 +220,7 @@ class CortexClient:
         self._last_output = out
 
         print(f"[Drone] Sending: {out}")
-        asyncio.run(self.drone.run_command(out))
+        self._run_drone_command(out)
 
 
     # Setup flow
@@ -162,21 +229,16 @@ class CortexClient:
         try:
             # 1) basic info (optional but good sanity check)
             info = self._rpc_call("getCortexInfo", {})
-            # print("[CortexInfo]", info)
+            print("[CortexInfo]", info)
 
             # 2) request access (may prompt approval in Launcher)
-            self._rpc_call("requestAccess", {
-                "clientId": CLIENT_ID,
-                "clientSecret": CLIENT_SECRET
-            })
+            # self._rpc_call("requestAccess", {
+            #     "clientId": CLIENT_ID,
+            #     "clientSecret": CLIENT_SECRET
+            # })
 
             # 3) authorize -> token
-            auth = self._rpc_call("authorize", {
-                "clientId": CLIENT_ID,
-                "clientSecret": CLIENT_SECRET,
-                "debit": 1
-            })
-            self.cortex_token = auth["cortexToken"]
+            self.cortex_token = self._fetch_token()
             print("[Auth] Got cortexToken.")
 
             # 4) find headset
@@ -197,12 +259,39 @@ class CortexClient:
             # Give it time to fully connect
             time.sleep(1.5)
 
-            # 6) create session
-            session = self._rpc_call("createSession", {
-                "cortexToken": self.cortex_token,
-                "headset": self.headset_id,
-                "status": "active"
-            })
+            # 6) create session (retry on stale token or session limit)
+            for attempt in range(3):
+                try:
+                    session = self._rpc_call("createSession", {
+                        "cortexToken": self.cortex_token,
+                        "headset": self.headset_id,
+                        "status": "active",
+                    })
+                    break
+                except RuntimeError as e:
+                    err = str(e)
+                    if ("-32602" in err or "-32050" in err) and attempt == 0:
+                        print("[Auth] Token rejected — re-authenticating…")
+                        os.environ.pop("AUTH", None)
+                        self.cortex_token = self._fetch_token(force_refresh=True)
+                    elif "-32019" in err and attempt < 2:
+                        print("[Session] Session limit reached — closing existing sessions…")
+                        try:
+                            sessions = self._rpc_call("querySessions", {
+                                "cortexToken": self.cortex_token,
+                            })
+                            for s in (sessions or []):
+                                if s.get("status") != "closed":
+                                    self._rpc_call("updateSession", {
+                                        "cortexToken": self.cortex_token,
+                                        "session":     s["id"],
+                                        "status":      "closed",
+                                    })
+                                    print(f"[Session] Closed {s['id']}")
+                        except Exception as se:
+                            print(f"[Session] Could not close sessions: {se}")
+                    else:
+                        raise
             self.session_id = session["id"]
             print(f"[Session] Active session: {self.session_id}")
 
@@ -263,12 +352,12 @@ class CortexClient:
 
 
 async def run_once():
+    loop = asyncio.get_event_loop()
     drone = await create_drone(DRONE_IP, DRONE_PORT)
     print("[Drone] Connected.")
-
     client = CortexClient(drone)
 
-    ws_app = WebSocketApp(
+    ws_app = websocket.WebSocketApp(
         CORTEX_URL,
         on_open=client.on_open,
         on_message=client.on_message,
@@ -284,6 +373,7 @@ async def run_once():
     )
     ws_thread.start()
 
+    await drone.run_command("command")
     try:
         ws_thread.join()  # block until websocket closes
     finally:
